@@ -23,7 +23,7 @@ public class Database  extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String statement = " create table contato ( " +
+        String statement = " create table product ( " +
                 " id integer primary key autoincrement,"+
                 " produto varchar(300),  " +
                 " categoria  varchar(300), "  +
@@ -33,7 +33,15 @@ public class Database  extends SQLiteOpenHelper{
                 " path varchar(600)" +
                 ")";
 
+
+        String logins = " create table login ( " +
+                " id integer primary key autoincrement,"+
+                " email varchar(70),  " +
+                " senha varchar(10) "  +
+                ")";
+
         sqLiteDatabase.execSQL(statement);
+        sqLiteDatabase.execSQL(logins);
     }
 
     @Override

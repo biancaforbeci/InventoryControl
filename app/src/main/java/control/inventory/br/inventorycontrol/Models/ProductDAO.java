@@ -12,7 +12,9 @@ import control.inventory.br.inventorycontrol.Infra.Database;
  * Created by biafo on 10/08/2018.
  */
 
-public class ProductDAO {public void salvar(Product product){
+public class ProductDAO {
+
+    public void save(Product product){
     SQLiteDatabase conn= Database.getInstance().getWritableDatabase(); //consegue escrever no bd, pegando o objeto do banco.
 
     ContentValues values = new ContentValues();
@@ -28,9 +30,9 @@ public class ProductDAO {public void salvar(Product product){
     }else{
         conn.update("products",values, "id = ?", new String[]{product.getID().toString()});
     }
-}
+    }
 
-    public ArrayList<Product> listar(){
+    public ArrayList<Product> listing(){
         SQLiteDatabase conn = Database.getInstance().getReadableDatabase();
         Cursor c = conn.query("products", new String[]{"id"," produto","categoria","preco","localizacao","detalhes"},null,null,null,null,"nome");
         ArrayList<Product> products= new ArrayList<Product>();
@@ -49,7 +51,7 @@ public class ProductDAO {public void salvar(Product product){
         return products;
     }
 
-    public void excluir(Product product){
+    public void delete(Product product){
         SQLiteDatabase conn= Database.getInstance().getWritableDatabase();
         conn.delete("products","id = ?", new String[]{product.getID().toString()});
     }
