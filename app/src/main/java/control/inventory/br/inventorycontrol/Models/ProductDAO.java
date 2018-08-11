@@ -34,7 +34,7 @@ public class ProductDAO {
 
     public ArrayList<Product> listing(){
         SQLiteDatabase conn = Database.getInstance().getReadableDatabase();
-        Cursor c = conn.query("products", new String[]{"id"," produto","categoria","preco","localizacao","detalhes"},null,null,null,null,"nome");
+        Cursor c = conn.query("products", new String[]{"id"," produto","categoria","preco","localizacao","quantidade","detalhes"},null,null,null,null,"nome");
         ArrayList<Product> products= new ArrayList<Product>();
         if(c.moveToFirst()){ //move para o primeiro da lista
             do{
@@ -44,7 +44,8 @@ public class ProductDAO {
                 p.setCategoria(c.getString(2));
                 p.setPreco(Integer.valueOf(c.getString(3)));
                 p.setLocalizacao(c.getString(4));
-                p.setLocalizacao(c.getString(5));
+                p.setQuantidade(Integer.valueOf(c.getString(4)));
+                p.setDetalhes(c.getString(6));
                 products.add(p);
             }while(c.moveToNext());
         }

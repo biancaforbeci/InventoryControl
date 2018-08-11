@@ -12,6 +12,7 @@ public class Product {
     private double Preco;
     private String localizacao;
     private String Detalhes;
+    private Integer Quantidade;
     private String Path;
 
 
@@ -69,5 +70,13 @@ public class Product {
 
     public void setPath(String path) {
         Path = path;
+    }
+
+    public Integer getQuantidade() {
+        return Quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        Quantidade = quantidade;
     }
 }

@@ -30,6 +30,7 @@ public class Database  extends SQLiteOpenHelper{
                 " preco decimal(13,4)," +
                 " localizacao varchar(300)," +
                 " detalhes varchar(300)," +
+                " quantidade varchar(300)," +
                 " path varchar(600)" +
                 ")";
 
@@ -40,8 +41,16 @@ public class Database  extends SQLiteOpenHelper{
                 " senha varchar(10) "  +
                 ")";
 
+        String funcionarios = " create table funcionarios ( " +
+                " id integer primary key autoincrement,"+
+                " nome varchar(70),  " +
+                " cracha varchar(10), "  +
+                " cpf varchar(11) "  +
+                ")";
+
         sqLiteDatabase.execSQL(statement);
         sqLiteDatabase.execSQL(logins);
+        sqLiteDatabase.execSQL(funcionarios);
     }
 
     @Override

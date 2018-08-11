@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controllers.ListingActivity" />
-        <activity android:name=".Controllers.MainActivity"></activity>
+        <activity android:name=".Controllers.MainActivity" />
+        <activity android:name=".Controllers.RegisterLoginsActivity"></activity>
     </application>
 
 </manifest>
