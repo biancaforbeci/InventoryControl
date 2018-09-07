@@ -34,6 +34,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import control.inventory.br.inventorycontrol.Infra.Database;
+import control.inventory.br.inventorycontrol.Models.DAO.LoginDAO;
+import control.inventory.br.inventorycontrol.Models.Login;
 import control.inventory.br.inventorycontrol.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -72,13 +74,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         new Database(getApplicationContext(),
-                "produtos.db",null,1);  //definindo o número da versão do db.
+                "produtos.db",null,4);  //definindo o número da versão do db.
 
         new Database(getApplicationContext(),
-                "logins.db",null,1);
+                "logins.db",null,4);
 
         new Database(getApplicationContext(),
-                "funcionario.db",null,1);
+                "funcionario.db",null,4);
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -159,7 +161,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private void attemptLogin() {
         if (mAuthTask != null) {
-            return;
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
         }
 
         // Reset errors.
@@ -174,7 +177,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -189,6 +192,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
+        }
+
+        Login loginDAO = LoginDAO.searchLogin(email.trim());
+
+        if(loginDAO == null){
+            mEmailView.setError(getString(R.string.email_not_registered));
+            focusView=mEmailView;
+            cancel=true;
+        }else{
+            if(!loginDAO.getPassword().equals(password)){
+                mEmailView.setError(getString(R.string.error_incorrect_password));
+                focusView=mEmailView;
+                cancel=true;
+            }
         }
 
         if (cancel) {
@@ -207,11 +224,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
     }
 
     /**
@@ -293,14 +305,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
-    public void Login(View view) {
-        Intent open = new Intent(LoginActivity.this,MainActivity.class);
-        startActivity(open);
-    }
-
     public void Register(View view) {
         Intent r = new Intent(LoginActivity.this,RegisterLoginsActivity.class);
         startActivity(r);
+    }
+
+    public void listing(View view) {
+        Intent intent= new Intent(LoginActivity.this,ListingEmployeesActivity.class);
+        startActivity(intent);
     }
 
 

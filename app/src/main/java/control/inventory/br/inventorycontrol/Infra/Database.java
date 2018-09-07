@@ -38,14 +38,16 @@ public class Database  extends SQLiteOpenHelper{
         String logins = " create table login ( " +
                 " id integer primary key autoincrement,"+
                 " email varchar(70),  " +
-                " senha varchar(10) "  +
+                " senha varchar(10), "  +
+                " funcionarioID integer , " +
+                "FOREIGN KEY(funcionarioID) REFERENCES funcionarios(id)" +
                 ")";
 
         String funcionarios = " create table funcionarios ( " +
                 " id integer primary key autoincrement,"+
                 " nome varchar(70),  " +
                 " cracha varchar(10), "  +
-                " cpf varchar(11) "  +
+                " cpf varchar(11)"  +
                 ")";
 
         sqLiteDatabase.execSQL(statement);
