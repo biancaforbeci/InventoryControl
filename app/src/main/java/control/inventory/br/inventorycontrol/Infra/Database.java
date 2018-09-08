@@ -23,7 +23,7 @@ public class Database  extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String statement = " create table product ( " +
+        String statement = " create table produtos ( " +
                 " id integer primary key autoincrement,"+
                 " produto varchar(300),  " +
                 " categoria  varchar(300), "  +
@@ -35,7 +35,7 @@ public class Database  extends SQLiteOpenHelper{
                 ")";
 
 
-        String logins = " create table login ( " +
+        String logins = " create table logins ( " +
                 " id integer primary key autoincrement,"+
                 " email varchar(70),  " +
                 " senha varchar(10), "  +
@@ -43,7 +43,7 @@ public class Database  extends SQLiteOpenHelper{
                 "FOREIGN KEY(funcionarioID) REFERENCES funcionarios(id)" +
                 ")";
 
-        String funcionarios = " create table funcionarios ( " +
+        String funcionarios = " create table employees ( " +
                 " id integer primary key autoincrement,"+
                 " nome varchar(70),  " +
                 " cracha varchar(10), "  +

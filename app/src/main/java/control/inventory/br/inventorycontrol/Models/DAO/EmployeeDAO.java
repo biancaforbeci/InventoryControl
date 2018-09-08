@@ -25,9 +25,9 @@ public class EmployeeDAO {
         values.put("cpf", employee.getCPF());
 
         if(employee.getID()==null){
-            conn.insert("funcionarios",null,values); //tabela e valores para inserir.
+            conn.insert("employees",null,values); //tabela e valores para inserir.
         }else{
-            conn.update("funcionarios",values, "id = ?", new String[]{employee.getID().toString()});
+            conn.update("employees",values, "id = ?", new String[]{employee.getID().toString()});
         }
     }
 
@@ -37,7 +37,7 @@ public class EmployeeDAO {
 
             SQLiteDatabase db = Database.getInstance().getReadableDatabase();
 
-            Cursor cursor = db.query("funcionarios", new String[]{"id", "nome",
+            Cursor cursor = db.query("employees", new String[]{"id", "nome",
                     "cracha", "cpf"}, "cpf" + "= ? ", new String[]{CPF}, null, null, null, null);
 
             if(cursor!=null){
@@ -58,7 +58,7 @@ public class EmployeeDAO {
 
     public ArrayList<Employee> listar(){
         SQLiteDatabase conn = Database.getInstance().getReadableDatabase();
-        Cursor c = conn.query("funcionarios", new String[]{"id","nome","cracha","cpf"},null,null,null,null,"nome");
+        Cursor c = conn.query("employees", new String[]{"id","nome","cracha","cpf"},null,null,null,null,"nome");
         ArrayList<Employee> employees= new ArrayList<Employee>();
         if(c.moveToFirst()){ //move para o primeiro da lista
             do{
@@ -78,7 +78,7 @@ public class EmployeeDAO {
 
         SQLiteDatabase db = Database.getInstance().getReadableDatabase();
 
-        Cursor cursor = db.query("funcionarios", new String[]{"id", "nome",
+        Cursor cursor = db.query("employees", new String[]{"id", "nome",
                 "cracha", "cpf"}, "id" + "= ? ", new String[]{id.toString()}, null, null, null, null);
 
         if(cursor!=null){
@@ -100,7 +100,7 @@ public class EmployeeDAO {
         Login login = LoginDAO.searchEmployeeLogin(employee);
         LoginDAO.Delete(login);
         SQLiteDatabase db = Database.getInstance().getWritableDatabase();
-        db.delete("funcionarios","id = ?", new String[]{employee.getID().toString()});
+        db.delete("employees","id = ?", new String[]{employee.getID().toString()});
     }
 }
 

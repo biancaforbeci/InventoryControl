@@ -74,13 +74,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         new Database(getApplicationContext(),
-                "produtos.db",null,4);  //definindo o número da versão do db.
+                "products.db",null,5);  //definindo o número da versão do db.
 
         new Database(getApplicationContext(),
-                "logins.db",null,4);
+                "login.db",null,5);
 
         new Database(getApplicationContext(),
-                "funcionario.db",null,4);
+                "employees.db",null,5);
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -161,8 +161,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private void attemptLogin() {
         if (mAuthTask != null) {
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
+
         }
 
         // Reset errors.
@@ -194,7 +193,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
-        Login loginDAO = LoginDAO.searchLogin(email.trim());
+        Login loginDAO = LoginDAO.searchLogin(email);
 
         if(loginDAO == null){
             mEmailView.setError(getString(R.string.email_not_registered));
@@ -218,6 +217,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
         }
     }
 

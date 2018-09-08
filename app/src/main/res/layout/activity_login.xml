@@ -112,7 +112,6 @@
                 android:id="@+id/btnlogin"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
-                android:onClick="Login"
                 android:text="Acessar" />
 
             <Button

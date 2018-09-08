@@ -120,9 +120,9 @@ public class RegisterLoginsActivity extends AppCompatActivity {
 
     private void SaveEmployee(Employee employee){
         try{
-            employee.setNome(Name.getText().toString());
-            employee.setCPF(CPF.getText().toString());
-            employee.setCracha(Badge.getText().toString());
+            employee.setNome(Name.getText().toString().trim());
+            employee.setCPF(CPF.getText().toString().trim());
+            employee.setCracha(Badge.getText().toString().trim());
 
             EmployeeDAO.Save(employee);
             Toast.makeText(getApplicationContext(), "Salvo com sucesso! " , Toast.LENGTH_SHORT).show();
@@ -144,8 +144,10 @@ public class RegisterLoginsActivity extends AppCompatActivity {
             return  1;
         }else if(!(Password.getText().toString().equals(Confirm.getText().toString()))){
             return  2;
-        }else if(CPF.getText().toString().equals(employee.getCPF())){
-            return  3;
+        }else if(employee != null){
+            if(CPF.getText().toString().equals(employee.getCPF())) {
+                return 3;
+            }
         }
 
         return 4;
