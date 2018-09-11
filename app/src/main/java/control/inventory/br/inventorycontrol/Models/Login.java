@@ -9,6 +9,7 @@ public class Login {
     private Integer ID;
     private String email;
     private String password;
+    private Integer funcionarioID;
 
     public String getEmail() {
         return email;
@@ -32,5 +33,13 @@ public class Login {
 
     public void setID(Integer ID) {
         this.ID = ID;
+    }
+
+    public Integer getFuncionarioID() {
+        return funcionarioID;
+    }
+
+    public void setFuncionarioID(Integer funcionarioID) {
+        this.funcionarioID = funcionarioID;
     }
 }

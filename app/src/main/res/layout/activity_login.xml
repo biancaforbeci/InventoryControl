@@ -112,7 +112,6 @@
                 android:id="@+id/btnlogin"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
-                android:onClick="Login"
                 android:text="Acessar" />
 
             <Button
@@ -121,6 +120,13 @@
                 android:layout_height="62dp"
                 android:onClick="Register"
                 android:text="Registrar" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="listing"
+                android:text="Button" />
 
         </LinearLayout>
 

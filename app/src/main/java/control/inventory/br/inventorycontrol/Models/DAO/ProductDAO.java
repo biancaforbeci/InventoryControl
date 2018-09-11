@@ -1,4 +1,4 @@
-package control.inventory.br.inventorycontrol.Models;
+package control.inventory.br.inventorycontrol.Models.DAO;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import control.inventory.br.inventorycontrol.Infra.Database;
+import control.inventory.br.inventorycontrol.Models.Product;
 
 /**
  * Created by biafo on 10/08/2018.
